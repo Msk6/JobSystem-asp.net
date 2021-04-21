@@ -1,0 +1,37 @@
+﻿@model IEnumerable<JobsSystem.Models.Submission>
+
+@{
+    ViewData["Title"] = "Applicants";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>@Model.First().name applied for</h1>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Job title
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.job.title
+                </td>
+                <td>
+                    <a asp-controller="AdminJobs" asp-action="Edit" asp-route-id="@item.job.id">Edit</a> |
+                    <a asp-controller="AdminJobs" asp-action="Details" asp-route-id="@item.job.id">Details</a> |
+                    <a asp-controller="AdminJobs" asp-action="Delete" asp-route-id="@item.job.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to submission List</a>
+</div>

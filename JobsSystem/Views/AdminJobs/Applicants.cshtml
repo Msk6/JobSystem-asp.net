@@ -1,0 +1,40 @@
+﻿@model JobsSystem.Models.Job
+
+@{
+    ViewData["Title"] = "Applicants";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Applicants</h1>
+
+<p>
+    <a asp-controller="AdminSubmissions" asp-action="Create" asp-route-id="@Model.id">Apply For @Model.title</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Submissions)
+        {
+            <tr>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    <a asp-controller="AdminSubmissions" asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-controller="AdminSubmissions" asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-controller="AdminSubmissions" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to jobs List</a>
+</div>
